@@ -1,5 +1,5 @@
 //Quiero que mi trabajo final sea una pagina tipo CRUD donde una persona pueda agregar lotes de campo y dejar notas al respecto de estos mismos. No encuentro donde aplicar una funcion o metodo de operaciones matematicas la verdad.
-
+const Contenedor = document.getElementsByClassName("Contenedor")[0]; 
 
 
 class Lote {
@@ -9,6 +9,22 @@ class Lote {
         this.coordenadaLongitud = coordenadaLongitud;
         this.nota = nota;
         this.id = id;
+    }
+    creaNodo (){
+        let nodo = document.createElement("div");
+        nodo.classList.add("Lote");
+        nodo.id = this.id;
+        nodo.innerHTML = `
+        <div class="Nombre">${this.nombre}</div>
+        <div class="Coordenadas">${this.coordenadaLatitud}</div>
+        <div class="Coordenadas">${this.coordenadaLongitud}</div>
+        <div class="Nota">${this.nota}</div>
+        <div class="Boton">
+            <button class="BotonEliminar">Eliminar</button>
+            <button class="BotonEditar">Editar</button>
+        </div>
+        `;
+        return nodo;
     }
 }
 
@@ -27,7 +43,7 @@ const agregadorDeLotes = () => {
         let nota = prompt("Ingrese la nota del lote");
         let id = generadorDeId();
         let lote = new Lote(nombre, coordenadaLatitud, coordenadaLongitud, nota, id);
-        arrayDeLotes.push(lote);
+        arrayDeLotes.push(lote.creaNodo());
         let respuesta = prompt("Desea agregar otro lote? (si/no)");
         if(respuesta == "no"){
             controlador = false;
@@ -36,13 +52,10 @@ const agregadorDeLotes = () => {
     return arrayDeLotes;
 }
 
-const imprimeLotes = (arrayDeLotes) => {
-    arrayDeLotes.forEach(lote => {
-        document.write(`<p> Lote ${lote.nombre} en la posicion ${lote.coordenadaLatitud}/${lote.coordenadaLongitud} <br> Tiene los siguentes problemas: ${lote.nota} </p> <br>`);
-        console.log(lote);
-    });
-}
+
 
 
 let arrayLotes = agregadorDeLotes();
-imprimeLotes(arrayLotes);
+arrayLotes.forEach(lote => {
+    Contenedor.appendChild(lote);
+})
