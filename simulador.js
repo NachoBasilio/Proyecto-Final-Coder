@@ -10,6 +10,11 @@ const contenedor = document.getElementsByClassName("contenedorDeCositas")[0];
 
 //Array de lotes
 let lotes = [];
+if(localStorage.getItem("lotes") === null){
+    localStorage.setItem("lotes", JSON.stringify(lotes));
+}else{
+    lotes = JSON.parse(localStorage.getItem("lotes"));
+}
 
 
 class Lote {
@@ -36,36 +41,15 @@ class Lote {
         `;
         return nodo;
     }
-    eliminarLote(){
-        let nodo = document.getElementById(this.id);
-        nodo.remove();
-    }
-    editarLote(){
-        let nodo = document.getElementById(this.id);
-        this.nombre = prompt("Ingrese el nombre del lote");
-        this.coordenadaLatitud = prompt("Ingrese la coordenada latitud del lote");
-        this.coordenadaLongitud = prompt("Ingrese la coordenada longitud del lote");
-        this.nota = prompt("Ingrese la nota del lote");
-        nodo.innerHTML = `
-        <div class="Nombre">${this.nombre}</div>
-        <div class="Coordenadas">${this.coordenadaLatitud}</div>
-        <div class="Coordenadas">${this.coordenadaLongitud}</div>
-        <div class="Nota">${this.nota}</div>
-        <div class="Boton">
-            <button class="BotonEliminar${this.id}">Eliminar</button>
-            <button class="BotonEditar${this.id}">Editar</button>
-        </div>
-        `;
-        this.agregaEventoBoton()
-    }
-    agregaEventoBoton(){
+
+    agregaEventoBoton(eliminarLote, editarLote){
         let botonEliminar = document.getElementsByClassName(`BotonEliminar${this.id}`)[0];
         botonEliminar.addEventListener("click", () => {
-            this.eliminarLote();
+            eliminarLote(this.id);
         });
         let botonEditar = document.getElementsByClassName(`BotonEditar${this.id}`)[0];
         botonEditar.addEventListener("click", () => {
-            this.editarLote();
+            editarLote(this.id);
         });
     }
 }
@@ -84,9 +68,27 @@ const cargarLotes = () => {
         arrayLotes.forEach(lote => {
             let nuevoLote = new Lote(lote.nombre, lote.coordenadaLatitud, lote.coordenadaLongitud, lote.nota, lote.id);
             contenedor.appendChild(nuevoLote.creaNodo());
-            nuevoLote.agregaEventoBoton();
+            nuevoLote.agregaEventoBoton(eliminarLote, editarLote);
         });
     }
+}
+
+//Hasta que no encuentre una forma efectiva de hacer que esto funcione sin un promt, lo dejo comentado
+const editarLote = (id) => {
+    let lote = lotes.find(lote => lote.id === id);
+    lote.nombre = prompt("Nombre del lote");
+    lote.coordenadaLatitud = prompt("Latitud");
+    lote.coordenadaLongitud = prompt("Longitud");
+    lote.nota = prompt("Nota");
+    localStorage.setItem("lotes", JSON.stringify(lotes));
+    cargarLotes();
+}
+
+
+const eliminarLote = (id) => {
+    lotes = lotes.filter(lote => lote.id !== id);
+    localStorage.setItem("lotes", JSON.stringify(lotes));
+    guardarLote();
 }
 
 const guardarLote = () => {
