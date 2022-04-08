@@ -1,6 +1,13 @@
 //Quiero que mi trabajo final sea una pagina tipo CRUD donde una persona pueda agregar lotes de campo y dejar notas al respecto de estos mismos. No encuentro donde aplicar una funcion o metodo de operaciones matematicas la verdad.
-const Contenedor = document.getElementsByClassName("Contenedor")[0]; 
+
+//Llamar DOM
 const botonAgregar = document.getElementById("agregar");
+const nombre = document.getElementById("nombre");
+const latitud = document.getElementById("latitud");
+const longitud = document.getElementById("longitud");
+const notas = document.getElementById("nota"); 
+const contenedor = document.getElementsByClassName("contenedorDeCositas")[0];
+
 
 class Lote {
     constructor(nombre, coordenadaLatitud, coordenadaLongitud, nota, id) {
@@ -65,33 +72,16 @@ const generadorDeId = () => {
     return id;
 }
 
-// const agregadorDeLotes = () => {
-//     let controlador = true
-//     let arrayDeLotes = [];
-//     while(controlador){
-//         let nombre = prompt("Ingrese el nombre del lote");
-//         let coordenadaLatitud = prompt("Ingrese la coordenada latitud del lote");
-//         let coordenadaLongitud = prompt("Ingrese la coordenada longitud del lote");
-//         let nota = prompt("Ingrese la nota del lote");
-//         let id = generadorDeId();
-//         let lote = new Lote(nombre, coordenadaLatitud, coordenadaLongitud, nota, id);
-//         arrayDeLotes.push(lote);
-//         let respuesta = prompt("Desea agregar otro lote? (si/no)");
-//         if(respuesta == "no"){
-//             controlador = false;
-//         }
-//     }
-//     return arrayDeLotes;
-// }
 
-botonAgregar.addEventListener("click", () => {
-    let nombre = prompt("Ingrese el nombre del lote");
-    let coordenadaLatitud = prompt("Ingrese la coordenada latitud del lote");
-    let coordenadaLongitud = prompt("Ingrese la coordenada longitud del lote");
-    let nota = prompt("Ingrese la nota del lote");
+botonAgregar.addEventListener("click", (e) => {
+    e.preventDefault();
+    let nombreElemento = nombre.value;
+    let coordenadaLatitud = latitud.value;
+    let coordenadaLongitud = longitud.value;
+    let notas = nota.value;
     let id = generadorDeId();
-    let lote = new Lote(nombre, coordenadaLatitud, coordenadaLongitud, nota, id);
+    let lote = new Lote(nombreElemento, coordenadaLatitud, coordenadaLongitud, notas, id);
     let nodo = lote.creaNodo();
-    Contenedor.appendChild(nodo);
+    contenedor.appendChild(nodo);
     lote.agregaEventoBoton();
 })
