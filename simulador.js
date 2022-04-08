@@ -75,18 +75,45 @@ const generadorDeId = () => {
     return id;
 }
 
+const cargarLotes = () => {
+    contenedor.innerHTML = "";
+    arrayLotes = JSON.parse(localStorage.getItem("lotes"));
+    if (arrayLotes === null) {
+        arrayLotes = [];
+    }else{
+        arrayLotes.forEach(lote => {
+            let nuevoLote = new Lote(lote.nombre, lote.coordenadaLatitud, lote.coordenadaLongitud, lote.nota, lote.id);
+            contenedor.appendChild(nuevoLote.creaNodo());
+            nuevoLote.agregaEventoBoton();
+        });
+    }
+}
+
+const guardarLote = () => {
+    localStorage.setItem("lotes", JSON.stringify(lotes));
+    nombre.value = "";
+    latitud.value = "";
+    longitud.value = "";
+    notas.value = "";
+    cargarLotes();
+}
 
 botonAgregar.addEventListener("click", (e) => {
     e.preventDefault();
-    let nombreElemento = nombre.value;
-    let coordenadaLatitud = latitud.value;
-    let coordenadaLongitud = longitud.value;
-    let notas = nota.value;
+    let nombreLote = nombre.value;
+    let latitudLote = latitud.value;
+    let longitudLote = longitud.value;
+    let notaLote = nota.value;
     let id = generadorDeId();
-    let lote = new Lote(nombreElemento, coordenadaLatitud, coordenadaLongitud, notas, id);
-    let nodo = lote.creaNodo();
-    contenedor.appendChild(nodo);
-    lote.agregaEventoBoton();
+    let objeto = {
+        nombre: nombreLote,
+        coordenadaLatitud: latitudLote,
+        coordenadaLongitud: longitudLote,
+        nota: notaLote,
+        id: id
+    }
+    lotes.push(objeto);
+    guardarLote()
 })
 
 
