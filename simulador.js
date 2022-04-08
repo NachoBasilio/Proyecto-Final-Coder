@@ -8,6 +8,9 @@ const longitud = document.getElementById("longitud");
 const notas = document.getElementById("nota"); 
 const contenedor = document.getElementsByClassName("contenedorDeCositas")[0];
 
+//Array de lotes
+let lotes = [];
+
 
 class Lote {
     constructor(nombre, coordenadaLatitud, coordenadaLongitud, nota, id) {
@@ -85,3 +88,6 @@ botonAgregar.addEventListener("click", (e) => {
     contenedor.appendChild(nodo);
     lote.agregaEventoBoton();
 })
+
+
+document.addEventListener("DOMContentLoaded", cargarLotes)
