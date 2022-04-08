@@ -1,0 +1,20 @@
+{
+  "name": "preentregaproyectofinal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "simulador.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NachoBasilio/proyectoFinalCoderHouse.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NachoBasilio/proyectoFinalCoderHouse/issues"
+  },
+  "homepage": "https://github.com/NachoBasilio/proyectoFinalCoderHouse#readme"
+}
