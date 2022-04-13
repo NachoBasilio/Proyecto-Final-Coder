@@ -100,12 +100,24 @@ const guardarLote = () => {
     cargarLotes();
 }
 
+
+const validarEntrada = (nombre, latitud, longitud, nota) => {
+    if (nombre === "" || latitud === "" || longitud === "" || nota === "") {
+        alert("Todos los campos son obligatorios");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+
 botonAgregar.addEventListener("click", (e) => {
     e.preventDefault();
     let nombreLote = nombre.value;
     let latitudLote = latitud.value;
     let longitudLote = longitud.value;
     let notaLote = nota.value;
+    if (validarEntrada(nombreLote, latitudLote, longitudLote, notaLote)) {
     let id = generadorDeId();
     let objeto = {
         nombre: nombreLote,
@@ -116,6 +128,7 @@ botonAgregar.addEventListener("click", (e) => {
     }
     lotes.push(objeto);
     guardarLote()
+    }
 })
 
 
