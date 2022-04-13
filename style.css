@@ -62,3 +62,12 @@ form div{
     border-radius: 12px;
     margin: 10px;
 }
+.Lote div{
+    font-size: 20px;
+}
+.Nota{
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 15px;
+}
