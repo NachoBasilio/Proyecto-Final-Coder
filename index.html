@@ -5,26 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PreEntrega</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200&family=Special+Elite&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+    <h1>CRUD de lotes</h1>
     <form onSubmit class="formulario-contenedor">
         <div>
-            <label for="nombre">Nombre del lote</label>
-            <input type="text" id="nombre">
+            <label class="titulos" for="nombre">Nombre del lote</label>
+            <input class="inputs" type="text" id="nombre">
         </div>
         <div>
-            <label for="latitud">Coordenada latitud</label>
-            <input type="text" id="latitud">
+            <label class="titulos" for="latitud">Coordenada latitud</label>
+            <input class="inputs" type="text" id="latitud">
         </div>
         <div>
-            <label for="longitud">Coordenada longitud</label>
-            <input type="text" id="longitud">
+            <label class="titulos" for="longitud">Coordenada longitud</label>
+            <input class="inputs" type="text" id="longitud">
         </div>
-        <div>
+        <div class="nota">
             <label for="nota">Notas</label>
             <textarea name="textarea" id="nota" cols="30" rows="10"></textarea>
         </div>
-        <button id="agregar" type>Agregar</button>
+        <button class="boton" id="agregar" type>Agregar</button>
     </form>
 
     <div class="contenedorDeCositas"></div>

@@ -1,0 +1,64 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body{
+    background-color: #FFF5D5;
+}
+
+h1{
+    font-size: 50px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+form{
+    margin: 100px auto 0 auto;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    background-color: #bdffae;
+    padding: 20px;
+    
+}
+
+form div{
+    display: flex;
+    flex-direction: row;
+}
+
+.titulos{
+    width: 200px;
+}
+
+.inputs{
+    flex: 1;
+}
+
+.nota{
+    flex-direction: column;
+    text-align: center;
+    margin: 5px 0;
+}
+.boton{
+    width: 200px;
+    margin: 0 auto;
+}
+
+.contenedorDeCositas{
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.Lote{
+    background-color: #bdffae;
+    padding: 10px;
+    border-radius: 12px;
+    margin: 10px;
+}

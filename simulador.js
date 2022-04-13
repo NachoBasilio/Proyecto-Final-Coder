@@ -120,3 +120,4 @@ botonAgregar.addEventListener("click", (e) => {
 
 
 document.addEventListener("DOMContentLoaded", cargarLotes)
+
