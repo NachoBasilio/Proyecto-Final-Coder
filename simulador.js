@@ -7,6 +7,7 @@ const latitud = document.getElementById("latitud");
 const longitud = document.getElementById("longitud");
 const notas = document.getElementById("nota"); 
 const contenedor = document.getElementsByClassName("contenedorDeCositas")[0];
+const alerta = document.getElementById("alerta");
 
 //Array de lotes
 let lotes = [];
@@ -103,9 +104,10 @@ const guardarLote = () => {
 
 const validarEntrada = (nombre, latitud, longitud, nota) => {
     if (nombre === "" || latitud === "" || longitud === "" || nota === "") {
-        alert("Todos los campos son obligatorios");
+        alerta.classList.add("aparecido");
         return false;
     } else {
+        alerta.classList.remove("aparecido");
         return true;
     }
 }
