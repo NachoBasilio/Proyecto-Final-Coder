@@ -31,10 +31,10 @@ class Lote {
         nodo.classList.add("Lote");
         nodo.id = this.id;
         nodo.innerHTML = `
-        <div class="Nombre">${this.nombre}</div>
-        <div class="Coordenadas">${this.coordenadaLatitud}</div>
-        <div class="Coordenadas">${this.coordenadaLongitud}</div>
-        <div class="Nota">${this.nota}</div>
+        <div class="Nombre ${this.id}">${this.nombre}</div>
+        <div class="Coordenadas ${this.id}">${this.coordenadaLatitud}</div>
+        <div class="Coordenadas ${this.id}">${this.coordenadaLongitud}</div>
+        <div class="Nota ${this.id}">${this.nota}</div>
         <div class="Boton">
             <button class="BotonEliminar${this.id}">Eliminar</button>
             <button class="BotonEditar${this.id}">Editar</button>
@@ -77,14 +77,27 @@ const cargarLotes = () => {
 //Hasta que no encuentre una forma efectiva de hacer que esto funcione sin un promt, lo dejo comentado
 const editarLote = (id) => {
     let lote = lotes.find(lote => lote.id === id);
-    lote.nombre = prompt("Nombre del lote");
-    lote.coordenadaLatitud = prompt("Latitud");
-    lote.coordenadaLongitud = prompt("Longitud");
-    lote.nota = prompt("Nota");
-    localStorage.setItem("lotes", JSON.stringify(lotes));
-    cargarLotes();
+    let idLote = lotes.findIndex(lote => lote.id === id);
+    let componentes = document.getElementsByClassName(JSON.stringify(lote.id))
+    let [nombre, latitud, longitud, nota] = componentes;
+    nombre.innerHTML = `<input class="value" type="text" value="${lote.nombre}">`;
+    latitud.innerHTML = `<input class="value" type="text" value="${lote.coordenadaLatitud}">`;
+    longitud.innerHTML = `<input class="value" type="text" value="${lote.coordenadaLongitud}">`;
+    nota.innerHTML = `<input class="value" type="text" value="${lote.nota}">`;
+    let componentesValores = document.getElementsByClassName(`value`);
+    let [nombreValor, latitudValor, longitudValor, notaValor] = componentesValores;
+    //agrego el boton de guardar
+    let botonGuardar = document.getElementsByClassName(`BotonEditar${id}`)[0];
+    console.log(botonGuardar);
+    botonGuardar.addEventListener("click", () => {
+        lotes[idLote].nombre = nombreValor.value;
+        lotes[idLote].coordenadaLatitud = latitudValor.value;
+        lotes[idLote].coordenadaLongitud = longitudValor.value;
+        lotes[idLote].nota = notaValor.value;
+        guardarLote();
+    })
+    botonGuardar.innerHTML = `<button class="BotonEditar${id}">Guardar</button>`;
 }
-
 
 const eliminarLote = (id) => {
     lotes = lotes.filter(lote => lote.id !== id);
