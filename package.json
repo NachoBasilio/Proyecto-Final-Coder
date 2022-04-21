@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/NachoBasilio/proyectoFinalCoderHouse/issues"
   },
-  "homepage": "https://github.com/NachoBasilio/proyectoFinalCoderHouse#readme"
+  "homepage": "https://github.com/NachoBasilio/proyectoFinalCoderHouse#readme",
+  "dependencies": {
+    "sweetalert": "^2.1.2"
+  }
 }

@@ -1,5 +1,5 @@
 //Quiero que mi trabajo final sea una pagina tipo CRUD donde una persona pueda agregar lotes de campo y dejar notas al respecto de estos mismos. No encuentro donde aplicar una funcion o metodo de operaciones matematicas la verdad.
-
+//importar swal
 //Llamar DOM
 const botonAgregar = document.getElementById("agregar");
 const nombre = document.getElementById("nombre");
@@ -8,6 +8,8 @@ const longitud = document.getElementById("longitud");
 const notas = document.getElementById("nota"); 
 const contenedor = document.getElementsByClassName("contenedorDeCositas")[0];
 const alerta = document.getElementById("alerta");
+
+
 
 //Array de lotes
 let lotes = [];
@@ -143,7 +145,14 @@ botonAgregar.addEventListener("click", (e) => {
     }
     lotes.push(objeto);
     guardarLote()
+    }else{
+        swal({
+            title: "Todos los campos son obligatorios",
+            icon: "error",
+            button: false,
+        })
     }
+
 })
 
 
