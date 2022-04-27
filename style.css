@@ -69,13 +69,25 @@ form div{
     flex-wrap: wrap;
 }
 .Lote{
-    background-color: #bdffae;
+    background-color: #dcffd5;
     padding: 10px;
     border-radius: 12px;
     margin: 10px;
+    box-shadow: 0px 0px 10px #000;
+    position: relative;
+}
+.Validador{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #dcffd5;
+    padding: 5px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 10px #000;
 }
 .Lote div{
     font-size: 20px;
+    margin: 10px 0;
 }
 .Nota{
     background-color: white;
@@ -96,4 +108,22 @@ form div{
     border-radius: 10px;
     margin-bottom: 15px;
     width: 100%;
+}
+
+#contenedor{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+#clima{
+    background-color: #96f2f2;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 10px #000;
+    margin-right: 50px;
+    margin-top: 10px;
 }

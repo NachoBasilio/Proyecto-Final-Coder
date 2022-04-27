@@ -1,7 +1,6 @@
 {
   "name": "preentregaproyectofinal",
   "version": "1.0.0",
-  "description": "",
   "main": "simulador.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,5 +18,6 @@
   "homepage": "https://github.com/NachoBasilio/proyectoFinalCoderHouse#readme",
   "dependencies": {
     "sweetalert": "^2.1.2"
-  }
+  },
+  "description": ""
 }

@@ -1,5 +1,5 @@
 //Quiero que mi trabajo final sea una pagina tipo CRUD donde una persona pueda agregar lotes de campo y dejar notas al respecto de estos mismos. No encuentro donde aplicar una funcion o metodo de operaciones matematicas la verdad.
-//importar swal
+
 //Llamar DOM
 const botonAgregar = document.getElementById("agregar");
 const nombre = document.getElementById("nombre");
@@ -21,18 +21,21 @@ if(localStorage.getItem("lotes") === null){
 
 
 class Lote {
-    constructor(nombre, coordenadaLatitud, coordenadaLongitud, nota, id) {
+    constructor(nombre, coordenadaLatitud, coordenadaLongitud, nota, id, urlPokemon) {
         this.nombre = nombre;
         this.coordenadaLatitud = coordenadaLatitud;
         this.coordenadaLongitud = coordenadaLongitud;
         this.nota = nota;
         this.id = id;
     }
+    async llamarPokemon(){
+        
+    }
     creaNodo (){
         let nodo = document.createElement("div");
         nodo.classList.add("Lote");
         nodo.id = this.id;
-        nodo.innerHTML = `
+        nodo.innerHTML = /* html */`
         <div class="Nombre ${this.id}">${this.nombre}</div>
         <div class="Coordenadas ${this.id}">${this.coordenadaLatitud}</div>
         <div class="Coordenadas ${this.id}">${this.coordenadaLongitud}</div>
@@ -56,6 +59,8 @@ class Lote {
         });
     }
 }
+
+
 
 const generadorDeId = () => {
     let id = Math.floor(Math.random() * 10000000);
