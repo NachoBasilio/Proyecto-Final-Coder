@@ -10,7 +10,6 @@ const contenedor = document.getElementsByClassName("contenedorDeCositas")[0];
 const alerta = document.getElementById("alerta");
 
 
-
 //Array de lotes
 let lotes = [];
 if(localStorage.getItem("lotes") === null){
@@ -95,7 +94,6 @@ const editarLote = (id) => {
     let [nombreValor, latitudValor, longitudValor, notaValor] = componentesValores;
     //agrego el boton de guardar
     let botonGuardar = document.getElementsByClassName(`BotonEditar${id}`)[0];
-    console.log(botonGuardar);
     botonGuardar.addEventListener("click", () => {
         lotes[idLote].nombre = nombreValor.value;
         lotes[idLote].coordenadaLatitud = latitudValor.value;
@@ -161,5 +159,35 @@ botonAgregar.addEventListener("click", (e) => {
 })
 
 
-document.addEventListener("DOMContentLoaded", cargarLotes)
+document.addEventListener("DOMContentLoaded", () => {
+    cargarLotes
+    let lat 
+    let lon
+    const temperatura = document.getElementById("temperatura-valor")
+    const infoTemp = document.getElementById("temperatura-texto");
+    const localidad = document.getElementById("localidad");
+
+    if(navigator.geolocation){          
+        navigator.geolocation.getCurrentPosition(posicion => {
+            lon = posicion.coords.longitude;
+            lat = posicion.coords.latitude;
+            apiKey = "ce0eb59695c56f88f943004f5c1bf917"
+            let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&lang=sp`;
+            fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                let temperaturas = data.main.temp;
+                let celsius = Math.round(temperaturas - 273.15);
+                let ciudad = data.name;
+                let descriptionCapitalizado = data.weather[0].description.charAt(0).toUpperCase() + data.weather[0].description.slice(1);
+                temperatura.textContent = `${celsius}°C`;
+                infoTemp.textContent = `${descriptionCapitalizado}`;1
+                localidad.textContent = `${ciudad}`;
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        });
+    }
+})
 
