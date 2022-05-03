@@ -158,9 +158,7 @@ botonAgregar.addEventListener("click", (e) => {
 
 })
 
-
-document.addEventListener("DOMContentLoaded", () => {
-    cargarLotes
+const llamaApi = () => {
     let lat 
     let lon
     const temperatura = document.getElementById("temperatura-valor")
@@ -189,5 +187,10 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         });
     }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    cargarLotes()
+    llamaApi()
 })
 
